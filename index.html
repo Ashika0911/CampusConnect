@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CampusConnect - College Events Platform</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Hero Section with Background Canvas -->
+    <div class="hero-container">
+        <canvas id="backgroundCanvas" class="hero-canvas"></canvas>
+        
+        <!-- Neon Glow Layers -->
+        <div class="glow-layer glow-primary"></div>
+        <div class="glow-layer glow-secondary"></div>
+        <div class="light-streaks"></div>
+        
+        <!-- Radial Light Rings -->
+        <div class="radial-ring ring-1"></div>
+        <div class="radial-ring ring-2"></div>
+        <div class="radial-ring ring-3"></div>
+        
+        <!-- Content Area with Headline and Subheading -->
+        <div class="content-space">
+            <div class="content-wrapper">
+                <h1 class="main-heading">CampusConnect</h1>
+                <p class="sub-heading">One-Stop Platform for all Campus Events</p>
+                
+                <!-- Event Cards Section -->
+                <div class="cards-container">
+                    <a href="tech.html" class="card-link" aria-label="Open Technical Events">
+                        <div class="event-card technical-card">
+                            <h2 class="card-title">Technical Events</h2>
+                            <p class="card-description">Hackathons, coding competitions, tech talks, and innovation challenges</p>
+                        </div>
+                    </a>
+                    <a href="nontech.html" class="card-link" aria-label="Open Non-Technical Events">
+                        <div class="event-card non-technical-card">
+                            <h2 class="card-title">Non-Technical Events</h2>
+                            <p class="card-description">Cultural fests, sports tournaments, workshops, and social gatherings</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

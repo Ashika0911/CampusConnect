@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Event Details - CampusConnect</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .event-details-page {
+      background: #000;
+      min-height: 100vh;
+      color: #cfcfcf;
+    }
+
+    .details-header {
+      padding: 20px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: transparent;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      border-bottom: 1px solid rgba(11,43,38,0.3);
+    }
+
+    .back-btn {
+      color: #4ade80;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      padding: 8px 12px;
+      border: 1px solid rgba(74, 222, 128, 0.3);
+      border-radius: 6px;
+      transition: all 200ms ease;
+    }
+
+    .back-btn:hover {
+      background: rgba(74, 222, 128, 0.1);
+      border-color: rgba(74, 222, 128, 0.6);
+    }
+
+    .details-header h1 {
+      flex: 1;
+      text-align: center;
+      color: #fff;
+      font-size: 1.05rem;
+      margin: 0;
+    }
+
+    .details-container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 40px 6vw 80px;
+    }
+
+    .event-hero {
+      width: 100%;
+      height: 400px;
+      background-size: cover;
+      background-position: center;
+      border-radius: 12px;
+      margin-bottom: 40px;
+      box-shadow: 0 10px 40px rgba(11,43,38,0.4);
+    }
+
+    @media (max-width: 768px) {
+      .event-hero {
+        height: 280px;
+      }
+    }
+
+    .details-content {
+      background: rgba(10, 15, 10, 0.72);
+      border: 2px solid rgba(11,43,38,0.35);
+      border-radius: 12px;
+      padding: 36px 32px;
+      box-shadow: 0 8px 30px rgba(11,43,38,0.45);
+    }
+
+    @media (max-width: 768px) {
+      .details-content {
+        padding: 24px 20px;
+      }
+    }
+
+    .event-title {
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: #fff;
+      margin: 0 0 16px 0;
+      text-shadow: 0 0 10px rgba(74, 222, 128, 0.2);
+    }
+
+    @media (max-width: 768px) {
+      .event-title {
+        font-size: 1.6rem;
+      }
+    }
+
+    .event-category {
+      display: inline-block;
+      background: linear-gradient(90deg, #0B2B26 0%, rgba(11,43,38,0.8) 100%);
+      color: #b0d9b5;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 24px;
+      border: 1px solid rgba(74, 222, 128, 0.2);
+    }
+
+    .event-meta-info {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-bottom: 32px;
+      padding-bottom: 32px;
+      border-bottom: 1px solid rgba(74, 222, 128, 0.15);
+    }
+
+    @media (max-width: 768px) {
+      .event-meta-info {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+    }
+
+    .meta-field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .meta-label {
+      font-size: 0.9rem;
+      color: #7a8a87;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .meta-value {
+      font-size: 1.1rem;
+      color: #4ade80;
+      font-weight: 500;
+    }
+
+    .event-description {
+      margin-bottom: 32px;
+    }
+
+    .description-title {
+      font-size: 1.3rem;
+      color: #fff;
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+
+    .description-text {
+      color: #b0b0b0;
+      line-height: 1.8;
+      font-size: 1rem;
+    }
+
+    .register-section {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .register-btn {
+      display: inline-block;
+      padding: 12px 32px;
+      background: linear-gradient(90deg, #0B2B26 0%, rgba(11,43,38,0.9) 100%);
+      color: #e9f5f2;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 8px 20px rgba(11,43,38,0.5);
+      transition: all 200ms ease;
+    }
+
+    .register-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 30px rgba(11,43,38,0.6);
+      background: linear-gradient(90deg, #0d3530 0%, rgba(13,53,48,0.95) 100%);
+    }
+
+    .share-btn {
+      display: inline-block;
+      padding: 12px 32px;
+      background: transparent;
+      color: #4ade80;
+      border: 2px solid rgba(74, 222, 128, 0.4);
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 200ms ease;
+    }
+
+    .share-btn:hover {
+      border-color: rgba(74, 222, 128, 0.7);
+      background: rgba(74, 222, 128, 0.1);
+    }
+
+    .loading {
+      text-align: center;
+      padding: 60px 20px;
+      color: #7a8a87;
+    }
+
+    .error {
+      background: rgba(255, 59, 48, 0.1);
+      border: 1px solid rgba(255, 59, 48, 0.3);
+      color: #ff9999;
+      padding: 24px;
+      border-radius: 8px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body class="event-details-page">
+  <header class="details-header">
+    <a href="javascript:history.back()" class="back-btn">← Back</a>
+    <h1>Event Details</h1>
+    <div style="width: 100px;"></div>
+  </header>
+
+  <main class="details-container">
+    <div id="event-content">
+      <div class="loading">Loading event details...</div>
+    </div>
+  </main>
+
+  <script>
+    // Event database
+    const eventsDatabase = {
+      'AI Hackathon': {
+        title: 'AI Hackathon',
+        category: 'Technical',
+        date: 'March 12, 2026',
+        time: '9:00 AM - 6:00 PM',
+        location: 'Innovation Lab, Building A',
+        image: 'https://via.placeholder.com/800x420?text=AI+Hackathon',
+        description: 'Join our exciting AI Hackathon where teams compete to build innovative AI solutions. This 24-hour hackathon challenges students to create cutting-edge applications using machine learning, deep learning, and AI frameworks. Perfect for beginners and experts alike. Participants will have access to cloud resources, APIs, and mentorship from industry experts. Top teams will receive prizes and career opportunities.'
+      },
+      'Cloud & DevOps Workshop': {
+        title: 'Cloud & DevOps Workshop',
+        category: 'Technical',
+        date: 'April 2, 2026',
+        time: '2:00 PM - 5:00 PM',
+        location: 'Computer Center, Block B',
+        image: 'https://via.placeholder.com/800x420?text=Cloud+Workshop',
+        description: 'Learn cloud computing and DevOps practices in this hands-on workshop. Covers AWS, Docker, Kubernetes, CI/CD pipelines, and infrastructure as code. Ideal for students interested in modern cloud architectures and deployment strategies. Each participant will work on real-world scenarios and get practical experience with industry-standard tools. Certificate provided upon completion.'
+      },
+      'Robotics Showcase': {
+        title: 'Robotics Showcase',
+        category: 'Technical',
+        date: 'May 5, 2026',
+        time: '10:00 AM - 4:00 PM',
+        location: 'Tech Arena, Campus Ground',
+        image: 'https://via.placeholder.com/800x420?text=Robotics+Showcase',
+        description: 'Witness amazing robotics projects and demonstrations by students from various departments. This showcase features autonomous robots, AI-powered machines, and IoT applications. Attendees can interact with working projects, learn about robotics technology, and network with roboticists. Competitions and live demos throughout the day will keep you engaged.'
+      },
+      'Data Science Speaker Series': {
+        title: 'Data Science Speaker Series',
+        category: 'Technical',
+        date: 'March 28, 2026',
+        time: '4:00 PM - 6:00 PM',
+        location: 'Seminar Hall, Main Building',
+        image: 'https://via.placeholder.com/800x420?text=Data+Science+Talk',
+        description: 'Industry experts share insights on data science careers, trends, and best practices. Learn about real-world applications of data science in various domains like healthcare, finance, and e-commerce. Q&A session with speakers. Free snacks and refreshments. Great networking opportunity with professionals in the field.'
+      },
+      'IoT Hands-on Workshop': {
+        title: 'IoT Hands-on Workshop',
+        category: 'Technical',
+        date: 'June 10, 2026',
+        time: '11:00 AM - 2:00 PM',
+        location: 'Lab 3, Engineering Block',
+        image: 'https://via.placeholder.com/800x420?text=IoT+Workshop',
+        description: 'Build IoT projects from scratch using Arduino, Raspberry Pi, and sensors. Learn about connecting devices, data logging, cloud integration, and real-time monitoring. Participants will create a working IoT prototype. Materials partially provided. Limited seats available.'
+      },
+      'Cyber Security Challenge': {
+        title: 'Cyber Security Challenge',
+        category: 'Technical',
+        date: 'July 19, 2026',
+        time: '1:00 PM - 5:00 PM',
+        location: 'Network Lab, Building C',
+        image: 'https://via.placeholder.com/800x420?text=Cyber+Security+Challenge',
+        description: 'Test your cybersecurity skills in this CTF (Capture The Flag) competition. Solve challenges involving cryptography, network security, web security, and forensics. Teams compete to solve maximum challenges and score the most points. Winners receive top positions and recognition. Great for learning security concepts practically.'
+      },
+      'Annual Cultural Fest': {
+        title: 'Annual Cultural Fest',
+        category: 'Non-Technical',
+        date: 'April 15, 2026',
+        time: '10:00 AM - 10:00 PM',
+        location: 'Main Ground, Campus',
+        image: 'https://via.placeholder.com/800x420?text=Annual+Cultural+Fest',
+        description: 'Celebrate the diversity of our campus at the Annual Cultural Fest. Featuring performances from various cultures, food stalls, art exhibitions, and entertainment. Watch classical dances, folk performances, contemporary shows, and comedy acts. Showcase your talents on the open stage. Food, crafts, and merchandise from different cultures available.'
+      },
+      'Inter-College Sports Tournament': {
+        title: 'Inter-College Sports Tournament',
+        category: 'Non-Technical',
+        date: 'May 20, 2026',
+        time: '7:00 AM - 6:00 PM',
+        location: 'Sports Complex, Campus',
+        image: 'https://via.placeholder.com/800x420?text=Sports+Tournament',
+        description: 'Join the biggest inter-college sports tournament of the season! Events include cricket, football, basketball, badminton, tennis, and athletics. Participate as an individual or represent your department. Prizes for winners in each category. Spectators welcome. Registration open for teams from all colleges.'
+      },
+      'Campus Music Night': {
+        title: 'Campus Music Night',
+        category: 'Non-Technical',
+        date: 'March 25, 2026',
+        time: '7:00 PM - 11:00 PM',
+        location: 'Auditorium, Main Building',
+        image: 'https://via.placeholder.com/800x420?text=Music+Night',
+        description: 'An evening filled with melodious music, live performances, and great vibes. Student musicians and bands perform various genres from classical to contemporary. Open mic session for talented performers. Refreshments and snacks served. Free entry for all students. Limited seating available.'
+      },
+      'Drama & Theater Fest': {
+        title: 'Drama & Theater Fest',
+        category: 'Non-Technical',
+        date: 'June 5, 2026',
+        time: '4:00 PM - 9:00 PM',
+        location: 'Performance Hall, Campus',
+        image: 'https://via.placeholder.com/800x420?text=Drama+Fest',
+        description: 'Experience captivating theatrical performances from various departments and student theater groups. Comedy dramas, serious plays, musicals, and skits. Showcase of acting talent and creative storytelling. Participate in workshops on acting techniques during the day. Evening shows start at 7 PM.'
+      },
+      'Art & Design Exhibition': {
+        title: 'Art & Design Exhibition',
+        category: 'Non-Technical',
+        date: 'July 10, 2026',
+        time: '9:00 AM - 8:00 PM',
+        location: 'Art Gallery, Creative Block',
+        image: 'https://via.placeholder.com/800x420?text=Art+Exhibition',
+        description: 'A showcase of stunning artwork, paintings, sculptures, digital designs, and student creations. Explore diverse art forms and design thinking. Works displayed by students from art, design, and engineering departments. Artist talks and interactive sessions. Art supplies available for purchase.'
+      },
+      'Campus Talent Hunt': {
+        title: 'Campus Talent Hunt',
+        category: 'Non-Technical',
+        date: 'August 12, 2026',
+        time: '5:00 PM - 9:00 PM',
+        location: 'Main Stage, Campus',
+        image: 'https://via.placeholder.com/800x420?text=Talent+Hunt',
+        description: 'Discover hidden talents on campus! Showcase your skills in singing, dancing, comedy, magic, or any performing art. Open to all students. Multiple rounds of eliminations leading to the finale. Winners receive prizes and recognition. Great platform to gain confidence and exposure.'
+      }
+    };
+
+    // Get event name from URL params
+    function getEventDetails() {
+      const params = new URLSearchParams(window.location.search);
+      const eventName = params.get('event');
+      const category = params.get('category');
+
+      const contentDiv = document.getElementById('event-content');
+
+      if (!eventName) {
+        contentDiv.innerHTML = '<div class="error">Event not found. <a href="index.html" style="color: #4ade80;">Return to home</a></div>';
+        return;
+      }
+
+      const event = eventsDatabase[eventName];
+
+      if (!event) {
+        contentDiv.innerHTML = '<div class="error">Event details not available. <a href="javascript:history.back()" style="color: #4ade80;">Go back</a></div>';
+        return;
+      }
+
+      contentDiv.innerHTML = `
+        <div class="event-hero" style="background-image: url('${event.image}');"></div>
+        <div class="details-content">
+          <h1 class="event-title">${event.title}</h1>
+          <div class="event-category">${event.category} Event</div>
+
+          <div class="event-meta-info">
+            <div class="meta-field">
+              <span class="meta-label">📅 Date</span>
+              <span class="meta-value">${event.date}</span>
+            </div>
+            <div class="meta-field">
+              <span class="meta-label">🕐 Time</span>
+              <span class="meta-value">${event.time}</span>
+            </div>
+            <div class="meta-field">
+              <span class="meta-label">📍 Location</span>
+              <span class="meta-value">${event.location}</span>
+            </div>
+            <div class="meta-field">
+              <span class="meta-label">🏷️ Category</span>
+              <span class="meta-value">${event.category}</span>
+            </div>
+          </div>
+
+          <div class="event-description">
+            <h2 class="description-title">About This Event</h2>
+            <p class="description-text">${event.description}</p>
+          </div>
+
+          <div class="register-section">
+            <button class="register-btn" onclick="alert('Registration coming soon!')">Register Now</button>
+            <button class="share-btn" onclick="shareEvent('${event.title}')">Share Event</button>
+          </div>
+        </div>
+      `;
+    }
+
+    function shareEvent(eventTitle) {
+      const url = window.location.href;
+      if (navigator.share) {
+        navigator.share({
+          title: 'CampusConnect Event',
+          text: `Check out this event: ${eventTitle}`,
+          url: url
+        });
+      } else {
+        alert('Event link: ' + url);
+      }
+    }
+
+    // Load event details when page loads
+    document.addEventListener('DOMContentLoaded', getEventDetails);
+  </script>
+</body>
+</html>
